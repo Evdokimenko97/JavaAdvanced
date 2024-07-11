@@ -1,4 +1,4 @@
-package collection.VectorAndStack;
+package collection.List.VectorAndStack;
 
 public class StackExample {
     public static void main(String[] args) {

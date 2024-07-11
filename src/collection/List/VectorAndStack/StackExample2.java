@@ -1,4 +1,4 @@
-package collection.VectorAndStack;
+package collection.List.VectorAndStack;
 
 import java.util.Stack;
 
