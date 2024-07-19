@@ -1,7 +1,9 @@
-package lambda;
+package lambda.javaUtilFunction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class StudentInfo2 {
@@ -15,12 +17,27 @@ public class StudentInfo2 {
 
         StudentInfo2 info = new StudentInfo2();
 
-        // Фильтрация по оценке больше 7.5 и мужской пол
+        // Фильтрация (Predicate) по оценке больше 7.5 и мужской пол
         Predicate<Student> p1 = student -> student.avgGrade > 7.5;
         Predicate<Student> p2 = student -> student.sex == 'm';
         info.testStudents(students, p1.and(p2));
         System.out.println("---------------");
         info.testStudents(students, p1.negate());
+
+        // Фильтрация (Function)
+        System.out.println("-------Фильтрация (Function)--------");
+        Function<Student, Double> fun = student -> student.avgGrade;
+        double result = avgOfSmth(students, fun);
+        System.out.println(result);
+    }
+
+    private static double avgOfSmth(List<Student> list, Function<Student, Double> fun) {
+        double result = 0;
+        for (Student s: list) {
+            result += fun.apply(s);
+        }
+        result = result / list.size();
+        return result;
     }
 
     void testStudents(ArrayList<Student> students, Predicate<Student> pr) {

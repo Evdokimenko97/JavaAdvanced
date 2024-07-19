@@ -1,4 +1,4 @@
-package lambda;
+package lambda.javaUtilFunction;
 
 public class Student {
     String name;
