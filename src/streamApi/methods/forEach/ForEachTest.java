@@ -1,4 +1,4 @@
-package streamApi.forEach;
+package streamApi.methods.forEach;
 
 import java.util.Arrays;
 

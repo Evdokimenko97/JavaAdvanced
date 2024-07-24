@@ -1,11 +1,19 @@
-package streamApi.filter;
+package streamApi.methods.sorted;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class FilterTest {
+public class SortedTest {
     public static void main(String[] args) {
+        // Sort array
+        int[] array = {3, 8, 1, 5, 9, 12, 21, 81, 7, 18};
+        array = Arrays.stream(array).sorted().toArray();
+        System.out.println(Arrays.toString(array));
+        System.out.println();
+
+        // Sort ArrayList
         List<Student> students = new ArrayList<>();
         students.add(new Student("Ivan", 'm', 22, 3, 8.3));
         students.add(new Student("Nikolay", 'm', 28, 2, 6.4));
@@ -13,10 +21,10 @@ public class FilterTest {
         students.add(new Student("Petr", 'm', 35, 4, 7));
         students.add(new Student("Mariya", 'f', 23, 3, 7.4));
 
-        List<Student> filterAgeAndAvgGrade = students.stream()
-                .filter(student -> student.getAge() > 22 && student.getAvgGrade() < 7.2)
-                .collect(Collectors.toList());
-        filterAgeAndAvgGrade.forEach(System.out::println);
+        students.stream()
+                .sorted((x, y) -> x.getName().compareTo(y.getName()))
+                .collect(Collectors.toList())
+                .forEach(System.out::println);
     }
 }
 
@@ -86,3 +94,4 @@ class Student {
         this.avgGrade = avgGrade;
     }
 }
+

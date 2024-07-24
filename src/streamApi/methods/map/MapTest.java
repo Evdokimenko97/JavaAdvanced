@@ -1,4 +1,4 @@
-package streamApi.map;
+package streamApi.methods.map;
 
 import java.util.ArrayList;
 import java.util.Arrays;

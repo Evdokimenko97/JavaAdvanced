@@ -1,8 +1,7 @@
-package streamApi.reduce;
+package streamApi.methods.reduce;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 public class ReduceTest {
     public static void main(String[] args) {

@@ -1,19 +1,11 @@
-package streamApi.sorted;
+package streamApi.methods.minMaxLimitSkip;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.Comparator;
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class SortedTest {
+public class MinAndMaxTest {
     public static void main(String[] args) {
-        // Sort array
-        int[] array = {3, 8, 1, 5, 9, 12, 21, 81, 7, 18};
-        array = Arrays.stream(array).sorted().toArray();
-        System.out.println(Arrays.toString(array));
-        System.out.println();
-
-        // Sort ArrayList
         List<Student> students = new ArrayList<>();
         students.add(new Student("Ivan", 'm', 22, 3, 8.3));
         students.add(new Student("Nikolay", 'm', 28, 2, 6.4));
@@ -21,10 +13,20 @@ public class SortedTest {
         students.add(new Student("Petr", 'm', 35, 4, 7));
         students.add(new Student("Mariya", 'f', 23, 3, 7.4));
 
-        students.stream()
-                .sorted((x, y) -> x.getName().compareTo(y.getName()))
-                .collect(Collectors.toList())
-                .forEach(System.out::println);
+        // min
+        Student studentMin = students.stream().min(Comparator.comparingInt(Student::getAge)).get();
+        System.out.println("Min: " + studentMin);
+
+        // max
+        Student studentMax = students.stream().max(Comparator.comparingInt(Student::getAge)).get();
+        System.out.println("Max: " + studentMax);
+
+        System.out.println("---forEach---");
+        students.stream().filter(student -> student.getAge() > 20).forEach(System.out::println);
+        System.out.println("---limit---");
+        students.stream().filter(student -> student.getAge() > 20).limit(2).forEach(System.out::println);
+        System.out.println("---skip---");
+        students.stream().filter(student -> student.getAge() > 20).skip(2).forEach(System.out::println);
     }
 }
 
@@ -94,4 +96,3 @@ class Student {
         this.avgGrade = avgGrade;
     }
 }
-
